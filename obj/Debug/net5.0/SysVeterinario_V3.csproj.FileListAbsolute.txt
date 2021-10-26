@@ -1,0 +1,16 @@
+C:\Users\lbout\source\repos\Arquitetura\Projeto\SysVeterinario_V3\bin\Debug\net5.0\SysVeterinario_V3.exe
+C:\Users\lbout\source\repos\Arquitetura\Projeto\SysVeterinario_V3\bin\Debug\net5.0\SysVeterinario_V3.deps.json
+C:\Users\lbout\source\repos\Arquitetura\Projeto\SysVeterinario_V3\bin\Debug\net5.0\SysVeterinario_V3.runtimeconfig.json
+C:\Users\lbout\source\repos\Arquitetura\Projeto\SysVeterinario_V3\bin\Debug\net5.0\SysVeterinario_V3.runtimeconfig.dev.json
+C:\Users\lbout\source\repos\Arquitetura\Projeto\SysVeterinario_V3\bin\Debug\net5.0\SysVeterinario_V3.dll
+C:\Users\lbout\source\repos\Arquitetura\Projeto\SysVeterinario_V3\bin\Debug\net5.0\ref\SysVeterinario_V3.dll
+C:\Users\lbout\source\repos\Arquitetura\Projeto\SysVeterinario_V3\bin\Debug\net5.0\SysVeterinario_V3.pdb
+C:\Users\lbout\source\repos\Arquitetura\Projeto\SysVeterinario_V3\obj\Debug\net5.0\SysVeterinario_V3.csprojAssemblyReference.cache
+C:\Users\lbout\source\repos\Arquitetura\Projeto\SysVeterinario_V3\obj\Debug\net5.0\SysVeterinario_V3.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\lbout\source\repos\Arquitetura\Projeto\SysVeterinario_V3\obj\Debug\net5.0\SysVeterinario_V3.AssemblyInfoInputs.cache
+C:\Users\lbout\source\repos\Arquitetura\Projeto\SysVeterinario_V3\obj\Debug\net5.0\SysVeterinario_V3.AssemblyInfo.cs
+C:\Users\lbout\source\repos\Arquitetura\Projeto\SysVeterinario_V3\obj\Debug\net5.0\SysVeterinario_V3.csproj.CoreCompileInputs.cache
+C:\Users\lbout\source\repos\Arquitetura\Projeto\SysVeterinario_V3\obj\Debug\net5.0\SysVeterinario_V3.dll
+C:\Users\lbout\source\repos\Arquitetura\Projeto\SysVeterinario_V3\obj\Debug\net5.0\ref\SysVeterinario_V3.dll
+C:\Users\lbout\source\repos\Arquitetura\Projeto\SysVeterinario_V3\obj\Debug\net5.0\SysVeterinario_V3.pdb
+C:\Users\lbout\source\repos\Arquitetura\Projeto\SysVeterinario_V3\obj\Debug\net5.0\SysVeterinario_V3.genruntimeconfig.cache

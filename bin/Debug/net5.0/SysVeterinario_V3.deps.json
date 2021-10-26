@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "SysVeterinario_V3/1.0.0": {
+        "runtime": {
+          "SysVeterinario_V3.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "SysVeterinario_V3/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
