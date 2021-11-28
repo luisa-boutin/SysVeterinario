@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Serialization;
 using SysVeterinario_V3.Model;
 
@@ -16,13 +13,12 @@ namespace SysVeterinario_V3.Controller
         public AnimaisModel Animal = new();
 
         public override void SalvarBancoDados()
-        {
+        { 
             XmlSerializer xml = new(typeof(List<AnimaisModel>));
             TextWriter arquivo = new StreamWriter(@"C:\Users\lbout\source\repos\Arquitetura\Projeto\SysVeterinario_V3\Animais.xml");
             xml.Serialize(arquivo, _listaAnimais);
             arquivo.Close();
         }
-
         public override void LerBancoDados()
         {
             XmlSerializer xml = new(typeof(List<AnimaisModel>));
@@ -30,35 +26,93 @@ namespace SysVeterinario_V3.Controller
             _listaAnimais = (List<AnimaisModel>)xml.Deserialize(arquivo);
             arquivo.Close();
         }
-        public void Inserir(AnimaisModel Animal)
+        public override void Inserir<T>(T Modelo)
         {
-            _listaAnimais.Add(Animal);
+            _listaAnimais.Add(Modelo as AnimaisModel);
+            SalvarBancoDados();
         }
-
-        public void Alterar()
+        public override void Alterar<T>(T Animal)
         {
-            throw new NotImplementedException();
-        }
+            Boolean achou = false;
 
-        public void Excluir()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Pesquisar()
-        {
-            AnimaisModel valor = null;
-            /*
             foreach (var item in _listaAnimais)
             {
-                if(item.getCodigo() == codigoEstado)
+                if ((Animal as AnimaisModel).IdAnimal == item.IdAnimal)
                 {
-                    valor = item;
+                    achou = true;
+
+                    Console.WriteLine("Insira aqui o nome do animal:");
+                    (Animal as AnimaisModel).NomeAnimal = Console.ReadLine();
+                    Console.WriteLine("Insira aqui o apelido do animal:");
+                    (Animal as AnimaisModel).ApelidoAnimal = Console.ReadLine();
+                    Console.WriteLine("Insira aqui a data de nascimento do animal (dd/mm/aaaa):");
+                    (Animal as AnimaisModel).DataDeNascimentoAnimal = DateTime.Parse(Console.ReadLine());
+                    Console.WriteLine("Insira aqui observacoes sobre o animal:");
+                    (Animal as AnimaisModel).ObservacoesAnimal = Console.ReadLine();
+                    Console.WriteLine("Insira aqui o codigo de identificacao da especie do animal:");
+                    (Animal as AnimaisModel).IdEspecieAnimal = int.Parse(Console.ReadLine());
+
+                    Console.WriteLine("Dados alterados com sucesso.\n");
                 }
             }
-            
-            return valor; */
-        }
 
+            if(achou == false)
+            {
+                Console.WriteLine("O animal nao foi encontrado.\n");
+            }
+
+            SalvarBancoDados();
+        }
+        public override void Excluir<T>(T Animal)
+        {
+            Boolean achou = false;
+            int posicao = -1;
+
+            foreach (var item in _listaAnimais)
+            {
+                if((Animal as AnimaisModel).IdAnimal == item.IdAnimal)
+                {
+                    achou = true;
+                    posicao = _listaAnimais.IndexOf(item);
+                    _listaAnimais.RemoveAt(posicao);
+                    Console.WriteLine("Animal removido da lista!\n");
+                }
+            }
+
+            if (achou == false)
+            {
+                Console.WriteLine("O animal nao foi encontrado.\n");
+            }
+
+            SalvarBancoDados();
+        }
+        public override void Pesquisar(int IdAnimal)
+        {
+            AnimaisModel animal = null;
+            
+            foreach (var item in _listaAnimais)
+            {
+                if(item.IdAnimal == IdAnimal)
+                {
+                    animal = item;
+                    Imprimir(animal);
+                } else
+                {
+                    Console.WriteLine("Animal nao encontrado.");
+                }
+            }
+        }
+        public override void Imprimir<T>(T animal)
+        {
+            foreach(var item in _listaAnimais)
+            {
+                Console.WriteLine($"ID: {item.IdAnimal.ToString()}");
+                Console.WriteLine($"Nome: {item.NomeAnimal.ToString()}");
+                Console.WriteLine($"Apelido: {item.ApelidoAnimal.ToString()}");
+                Console.WriteLine($"Data de nascimento: {item.DataDeNascimentoAnimal.ToString()}");
+                Console.WriteLine($"Observacoes: {item.ObservacoesAnimal.ToString()}");
+                Console.WriteLine($"ID da Especie: {item.IdEspecieAnimal.ToString()}");
+            }
+        }  
     }
 }

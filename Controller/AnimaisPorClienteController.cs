@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Serialization;
 using SysVeterinario_V3.Model;
 
@@ -13,7 +10,7 @@ namespace SysVeterinario_V3.Controller
     {
         private List<AnimaisPorClienteModel> _listaAnimaisPorCliente = new();
 
-        public AnimaisPorClienteModel Animal = new();
+        public AnimaisPorClienteModel AnimalPorCliente = new();
 
         public override void SalvarBancoDados()
         {
@@ -22,7 +19,6 @@ namespace SysVeterinario_V3.Controller
             xml.Serialize(arquivo, _listaAnimaisPorCliente);
             arquivo.Close();
         }
-
         public override void LerBancoDados()
         {
             XmlSerializer xml = new(typeof(List<AnimaisPorClienteModel>));
@@ -30,23 +26,82 @@ namespace SysVeterinario_V3.Controller
             _listaAnimaisPorCliente = (List<AnimaisPorClienteModel>)xml.Deserialize(arquivo);
             arquivo.Close();
         }
- 
-        public void Inserir(AnimaisPorClienteModel animalPorCliente)
+        public override void Inserir<T>(T animalPorCliente)
         {
-            _listaAnimaisPorCliente.Add(animalPorCliente);
+            _listaAnimaisPorCliente.Add(animalPorCliente as AnimaisPorClienteModel);
+            SalvarBancoDados();
         }
-        public void Alterar()
+        public override void Alterar<T>(T animalPorCliente)
         {
+            Boolean achou = false;
 
-        }
-        public void Excluir()
-        {
+            foreach (var item in _listaAnimaisPorCliente)
+            {
+                if ((animalPorCliente as AnimaisPorClienteModel).IdAnimal == item.IdAnimal)
+                {
+                    achou = true;
 
-        }
-        public void Pesquisar()
-        {
+                    Console.WriteLine("Insira aqui o novo ID do cliente:");
+                    (animalPorCliente as AnimaisPorClienteModel).IdCliente = int.Parse(Console.ReadLine());
 
+                    Console.WriteLine("Dados alterados com sucesso.\n");
+                }
+            }
+
+            if (achou == false)
+            {
+                Console.WriteLine("O animal nao foi encontrado.\n");
+            }
+
+            SalvarBancoDados();
         }
-        
+        public override void Excluir<T>(T animalPorCliente)
+        {
+            Boolean achou = false;
+            int posicao = -1;
+
+            foreach (var item in _listaAnimaisPorCliente)
+            {
+                if ((animalPorCliente as AnimaisPorClienteModel).IdAnimal == item.IdAnimal)
+                {
+                    achou = true;
+                    posicao = _listaAnimaisPorCliente.IndexOf(item);
+                    _listaAnimaisPorCliente.RemoveAt(posicao);
+                    Console.WriteLine("Animal removido da lista!\n");
+                }
+            }
+
+            if (achou == false)
+            {
+                Console.WriteLine("O animal nao foi encontrado.\n");
+            }
+
+            SalvarBancoDados();
+        }
+        public override void Pesquisar(int IdAnimal)
+        {
+            AnimaisPorClienteModel animalPorCliente = null;
+
+            foreach (var item in _listaAnimaisPorCliente)
+            {
+                if (item.IdAnimal == IdAnimal)
+                {
+                    animalPorCliente = item;
+                    Imprimir(animalPorCliente);
+                }
+                else
+                {
+                    Console.WriteLine("Animal nao encontrado.");
+                }
+            }
+        }
+        public override void Imprimir<T>(T animalPorCliente)
+        {
+            foreach (var item in _listaAnimaisPorCliente)
+            {
+                Console.WriteLine($"ID do animal: {item.IdAnimal.ToString()}");
+                Console.WriteLine($"ID do cliente: {item.IdCliente.ToString()}");
+            }
+        }
     }
 }

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfAnimaisModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <AnimaisModel>
+    <idAnimal>1</idAnimal>
+    <IdAnimal>1</IdAnimal>
+    <NomeAnimal>Tom</NomeAnimal>
+    <ApelidoAnimal>Peste</ApelidoAnimal>
+    <DataDeNascimentoAnimal>2020-12-12T00:00:00</DataDeNascimentoAnimal>
+    <ObservacoesAnimal>Fofo</ObservacoesAnimal>
+    <IdEspecieAnimal>55244</IdEspecieAnimal>
+  </AnimaisModel>
+</ArrayOfAnimaisModel>

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using SysVeterinario_V3.Controller;
 using SysVeterinario_V3.Model;
 
@@ -13,6 +9,7 @@ namespace SysVeterinario_V3.View
         public override void AbrirMenu()
         {
             int opc;
+            int idPesquisaAnimal;
 
             AnimaisPorClienteController ControleAnimaisPorCliente = new();
             AnimaisPorClienteModel NovoAnimalPorCliente = new();
@@ -33,8 +30,9 @@ namespace SysVeterinario_V3.View
                 switch (opc)
                 {
                     case 41:
-
+                        Console.WriteLine("Insira aqui o codigo de identificacao do animal:");
                         NovoAnimalPorCliente.IdAnimal = int.Parse(Console.ReadLine());
+                        Console.WriteLine("Insira aqui o codigo de identificacao do cliente:");
                         NovoAnimalPorCliente.IdCliente = int.Parse(Console.ReadLine());
                         ControleAnimaisPorCliente.Inserir(NovoAnimalPorCliente);
 
@@ -42,13 +40,19 @@ namespace SysVeterinario_V3.View
 
                         break;
                     case 42:
-
+                        Console.WriteLine("Insira aqui o codigo de identificacao do animal a ser atualizado:");
+                        NovoAnimalPorCliente.IdAnimal = int.Parse(Console.ReadLine());
+                        ControleAnimaisPorCliente.Alterar(NovoAnimalPorCliente);
                         break;
                     case 43:
-
+                        Console.WriteLine("Insira aqui o codigo de identificacao do animal a ser removido:");
+                        NovoAnimalPorCliente.IdAnimal = int.Parse(Console.ReadLine());
+                        ControleAnimaisPorCliente.Excluir(NovoAnimalPorCliente);
                         break;
                     case 44:
-
+                        Console.WriteLine("Insira aqui o codigo de identificacao do animal a ser pesquisado:");
+                        idPesquisaAnimal = int.Parse(Console.ReadLine());
+                        ControleAnimaisPorCliente.Pesquisar(idPesquisaAnimal);
                         break;
                     case 49:
                         Console.WriteLine("Voce optou por sair");

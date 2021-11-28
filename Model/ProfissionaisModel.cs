@@ -22,7 +22,7 @@ namespace SysVeterinario_V3.Model
 
         public DateTime DataCadastroProfissional { get; set; }
 
-        public bool? FeriasProfissional { get; set; }
+        public string FeriasProfissional { get; set; }
 
     }
 }

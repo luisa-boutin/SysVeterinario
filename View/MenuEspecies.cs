@@ -13,6 +13,7 @@ namespace SysVeterinario_V3.View
         public override void AbrirMenu()
         {
             int opc;
+            int idPesquisaEspecie;
 
             EspeciesController ControleEspecies = new();
             EspeciesModel NovaEspecie = new();
@@ -33,20 +34,31 @@ namespace SysVeterinario_V3.View
                 switch (opc)
                 {
                     case 11:
+                        Console.WriteLine("Insira aqui o codigo de identificacao da especie de animal:");
                         NovaEspecie.IdEspecieAnimal = int.Parse(Console.ReadLine());
+                        Console.WriteLine("Insira aqui o nome da especie de animal:");
                         NovaEspecie.NomeEspecieAnimal = Console.ReadLine();
-
                         ControleEspecies.Inserir(NovaEspecie);
 
                         Console.WriteLine("Especie cadastrada com sucesso!\n");
+
                         break;
                     case 12:
+                        Console.WriteLine("Insira aqui o codigo de identificacao da especie de animal a ser atualizada:");
+                        NovaEspecie.IdEspecieAnimal = int.Parse(Console.ReadLine());
+                        ControleEspecies.Alterar(NovaEspecie);
 
                         break;
                     case 13:
+                        Console.WriteLine("Insira aqui o codigo de identificacao da especie de animal a ser removida:");
+                        NovaEspecie.IdEspecieAnimal = int.Parse(Console.ReadLine());
+                        ControleEspecies.Excluir(NovaEspecie);
 
                         break;
                     case 14:
+                        Console.WriteLine("Insira aqui o codigo de identificacao da especie de animal a ser pesquisada:");
+                        idPesquisaEspecie = int.Parse(Console.ReadLine());
+                        ControleEspecies.Pesquisar(idPesquisaEspecie);
 
                         break;
                     case 19:

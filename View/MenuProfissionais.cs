@@ -13,6 +13,7 @@ namespace SysVeterinario_V3.View
         public override void AbrirMenu()
         {
             int opc;
+            int idPesquisaProfissional;
 
             ProfissionaisController ControleProfissionais = new();
             ProfissionaisModel NovoProfissional = new();
@@ -33,29 +34,42 @@ namespace SysVeterinario_V3.View
                 switch (opc)
                 {
                     case 51:
-
+                        Console.WriteLine("Insira aqui o nome do profissional:");
                         NovoProfissional.NomeProfissional = Console.ReadLine();
+                        Console.WriteLine("Insira aqui o codigo de identificacao do profissional:");
                         NovoProfissional.IdProfissional = int.Parse(Console.ReadLine());
+                        Console.WriteLine("Insira aqui o CRMV do profissional:");
                         NovoProfissional.CRMVProfissional = Console.ReadLine();
+                        Console.WriteLine("Insira aqui o CPF do profissional:");
                         NovoProfissional.CPFProfissional = Console.ReadLine();
+                        Console.WriteLine("Insira aqui o telefone do profissional:");
                         NovoProfissional.TelefoneProfissional = Console.ReadLine();
+                        Console.WriteLine("Insira aqui o email do profissional:");
                         NovoProfissional.EmailProfissional = Console.ReadLine();
+                        Console.WriteLine("Insira aqui a data de cadastro do profissional:");
                         NovoProfissional.DataCadastroProfissional = DateTime.Parse(Console.ReadLine());
-                        NovoProfissional.FeriasProfissional = bool.Parse(Console.ReadLine());
-                        
+                        Console.WriteLine("Insira aqui o status de ferias do profissional (Sim/Nao):");
+                        NovoProfissional.FeriasProfissional = Console.ReadLine();
+
                         ControleProfissionais.Inserir(NovoProfissional);
 
                         Console.WriteLine("Cadastro de profissional efetuado com sucesso!\n");
 
                         break;
                     case 52:
-
+                        Console.WriteLine("Insira aqui o codigo de identificacao do profissional a ser atualizado:");
+                        NovoProfissional.IdProfissional = int.Parse(Console.ReadLine());
+                        ControleProfissionais.Alterar(NovoProfissional);
                         break;
                     case 53:
-
+                        Console.WriteLine("Insira aqui o codigo de identificacao do profissional a ser removido:");
+                        NovoProfissional.IdProfissional = int.Parse(Console.ReadLine());
+                        ControleProfissionais.Excluir(NovoProfissional);
                         break;
                     case 54:
-
+                        Console.WriteLine("Insira aqui o codigo de identificacao do animal a ser pesquisado:");
+                        idPesquisaProfissional = int.Parse(Console.ReadLine());
+                        ControleProfissionais.Pesquisar(idPesquisaProfissional);
                         break;
                     case 59:
                         Console.WriteLine("Voce optou por sair");
