@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfClientesModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ClientesModel>
+    <IdAnimal>3</IdAnimal>
+    <IdCliente>1</IdCliente>
+    <NomeCliente>aaaaaa</NomeCliente>
+    <CPFCliente>55555555555</CPFCliente>
+    <EmailCliente>uuuuuuuuuuuuuuuuuu</EmailCliente>
+    <DataCadastroCliente>1995-12-18T00:00:00</DataCadastroCliente>
+    <TelefoneCliente>9999999999</TelefoneCliente>
+  </ClientesModel>
+</ArrayOfClientesModel>

@@ -28,35 +28,35 @@ namespace SysVeterinario_V3.Controller
             _listaProfissionais = (List<ProfissionaisModel>)xml.Deserialize(arquivo);
             arquivo.Close();
         }
-        public override void Inserir<T>(T Profissional)
+        public override void Inserir<T>(T Modelo)
         {
-            _listaProfissionais.Add(Profissional as ProfissionaisModel);
+            _listaProfissionais.Add(Modelo as ProfissionaisModel);
             SalvarBancoDados();
         }
-        public override void Alterar<T>(T Profissional)
+        public override void Alterar<T>(T Modelo)
         {
             Boolean achou = false;
 
             foreach (var item in _listaProfissionais)
             {
-                if ((Profissional as ProfissionaisModel).IdProfissional == item.IdProfissional)
+                if ((Modelo as ProfissionaisModel).IdProfissional == item.IdProfissional)
                 {
                     achou = true;
 
                     Console.WriteLine("Insira aqui o nome do profissional:");
-                    (Profissional as ProfissionaisModel).NomeProfissional = Console.ReadLine();
+                    (Modelo as ProfissionaisModel).NomeProfissional = Console.ReadLine();
                     Console.WriteLine("Insira aqui o CRMV do profissional:");
-                    (Profissional as ProfissionaisModel).CRMVProfissional = Console.ReadLine();
+                    (Modelo as ProfissionaisModel).CRMVProfissional = Console.ReadLine();
                     Console.WriteLine("Insira aqui o CPF do profissional:");
-                    (Profissional as ProfissionaisModel).CPFProfissional = Console.ReadLine();
+                    (Modelo as ProfissionaisModel).CPFProfissional = Console.ReadLine();
                     Console.WriteLine("Insira aqui o telefone do profissional:");
-                    (Profissional as ProfissionaisModel).TelefoneProfissional = Console.ReadLine();
+                    (Modelo as ProfissionaisModel).TelefoneProfissional = Console.ReadLine();
                     Console.WriteLine("Insira aqui o e-mail do profissional:");
-                    (Profissional as ProfissionaisModel).EmailProfissional = Console.ReadLine();
+                    (Modelo as ProfissionaisModel).EmailProfissional = Console.ReadLine();
                     Console.WriteLine("Insira aqui a data de cadastro do profissional (dd/mm/aaaa):");
-                    (Profissional as ProfissionaisModel).DataCadastroProfissional = DateTime.Parse(Console.ReadLine());
+                    (Modelo as ProfissionaisModel).DataCadastroProfissional = DateTime.Parse(Console.ReadLine());
                     Console.WriteLine("O profissional esta de ferias? (S/N)");
-                    (Profissional as ProfissionaisModel).FeriasProfissional = Console.ReadLine();
+                    (Modelo as ProfissionaisModel).FeriasProfissional = Console.ReadLine();
 
                     Console.WriteLine("Dados alterados com sucesso.\n");
                 }
@@ -69,14 +69,14 @@ namespace SysVeterinario_V3.Controller
 
             SalvarBancoDados();
         }
-        public override void Excluir<T>(T Profissional)
+        public override void Excluir<T>(T Modelo)
         {
             Boolean achou = false;
             int posicao = -1;
 
             foreach (var item in _listaProfissionais)
             {
-                if ((Profissional as ProfissionaisModel).IdProfissional == item.IdProfissional)
+                if ((Modelo as ProfissionaisModel).IdProfissional == item.IdProfissional)
                 {
                     achou = true;
                     posicao = _listaProfissionais.IndexOf(item);
@@ -92,13 +92,13 @@ namespace SysVeterinario_V3.Controller
 
             SalvarBancoDados();
         }
-        public override void Pesquisar(int IdProfissional)
+        public override void Pesquisar(int valor)
         {
             ProfissionaisModel profissional = null;
 
             foreach (var item in _listaProfissionais)
             {
-                if (item.IdProfissional == IdProfissional)
+                if (item.IdProfissional == valor)
                 {
                     profissional = item;
                     Imprimir(profissional);
@@ -109,7 +109,7 @@ namespace SysVeterinario_V3.Controller
                 }
             }
         }
-        public override void Imprimir<T>(T Profissional)
+        public override void Imprimir<T>(T Modelo)
         {
             foreach (var item in _listaProfissionais)
             {

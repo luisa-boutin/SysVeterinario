@@ -8,9 +8,7 @@ namespace SysVeterinario_V3.Model
 {
     public class AnimaisModel
     {
-        public int idAnimal;
-
-        public int IdAnimal { get => idAnimal; set => idAnimal = value; }
+        public int IdAnimal { get; set; }
         
         public string NomeAnimal { get; set; }
         

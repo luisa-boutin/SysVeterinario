@@ -26,23 +26,23 @@ namespace SysVeterinario_V3.Controller
             _listaAnimaisPorCliente = (List<AnimaisPorClienteModel>)xml.Deserialize(arquivo);
             arquivo.Close();
         }
-        public override void Inserir<T>(T animalPorCliente)
+        public override void Inserir<T>(T Modelo)
         {
-            _listaAnimaisPorCliente.Add(animalPorCliente as AnimaisPorClienteModel);
+            _listaAnimaisPorCliente.Add(Modelo as AnimaisPorClienteModel);
             SalvarBancoDados();
         }
-        public override void Alterar<T>(T animalPorCliente)
+        public override void Alterar<T>(T Modelo)
         {
             Boolean achou = false;
 
             foreach (var item in _listaAnimaisPorCliente)
             {
-                if ((animalPorCliente as AnimaisPorClienteModel).IdAnimal == item.IdAnimal)
+                if ((Modelo as AnimaisPorClienteModel).IdAnimal == item.IdAnimal)
                 {
                     achou = true;
 
                     Console.WriteLine("Insira aqui o novo ID do cliente:");
-                    (animalPorCliente as AnimaisPorClienteModel).IdCliente = int.Parse(Console.ReadLine());
+                    (Modelo as AnimaisPorClienteModel).IdCliente = int.Parse(Console.ReadLine());
 
                     Console.WriteLine("Dados alterados com sucesso.\n");
                 }
@@ -55,14 +55,14 @@ namespace SysVeterinario_V3.Controller
 
             SalvarBancoDados();
         }
-        public override void Excluir<T>(T animalPorCliente)
+        public override void Excluir<T>(T Modelo)
         {
             Boolean achou = false;
             int posicao = -1;
 
             foreach (var item in _listaAnimaisPorCliente)
             {
-                if ((animalPorCliente as AnimaisPorClienteModel).IdAnimal == item.IdAnimal)
+                if ((Modelo as AnimaisPorClienteModel).IdAnimal == item.IdAnimal)
                 {
                     achou = true;
                     posicao = _listaAnimaisPorCliente.IndexOf(item);
@@ -78,13 +78,13 @@ namespace SysVeterinario_V3.Controller
 
             SalvarBancoDados();
         }
-        public override void Pesquisar(int IdAnimal)
+        public override void Pesquisar(int valor)
         {
             AnimaisPorClienteModel animalPorCliente = null;
 
             foreach (var item in _listaAnimaisPorCliente)
             {
-                if (item.IdAnimal == IdAnimal)
+                if (item.IdAnimal == valor)
                 {
                     animalPorCliente = item;
                     Imprimir(animalPorCliente);
@@ -95,13 +95,18 @@ namespace SysVeterinario_V3.Controller
                 }
             }
         }
-        public override void Imprimir<T>(T animalPorCliente)
+        public override void Imprimir<T>(T Modelo)
         {
             foreach (var item in _listaAnimaisPorCliente)
             {
                 Console.WriteLine($"ID do animal: {item.IdAnimal.ToString()}");
                 Console.WriteLine($"ID do cliente: {item.IdCliente.ToString()}");
             }
+        }
+
+        public void SalvarTudo()
+        {
+            SalvarBancoDados();
         }
     }
 }

@@ -18,7 +18,6 @@ namespace SysVeterinario_V3.Controller
             xml.Serialize(arquivo, _listaEspecies);
             arquivo.Close();
         }
-
         public override void LerBancoDados()
         {
             XmlSerializer xml = new(typeof(List<EspeciesModel>));
@@ -26,23 +25,23 @@ namespace SysVeterinario_V3.Controller
             _listaEspecies = (List<EspeciesModel>)xml.Deserialize(arquivo);
             arquivo.Close();
         }
-        public override void Inserir<T>(T novaEspecie)
+        public override void Inserir<T>(T Modelo)
         {
-            _listaEspecies.Add(Especie as EspeciesModel);
+            _listaEspecies.Add(Modelo as EspeciesModel);
             SalvarBancoDados();
         }
-        public override void Alterar<T>(T Especie)
+        public override void Alterar<T>(T Modelo)
         {
             Boolean achou = false;
 
             foreach (var item in _listaEspecies)
             {
-                if ((Especie as EspeciesModel).IdEspecieAnimal == item.IdEspecieAnimal)
+                if ((Modelo as EspeciesModel).IdEspecieAnimal == item.IdEspecieAnimal)
                 {
                     achou = true;
 
                     Console.WriteLine("Insira aqui o nome da especie:");
-                    (Especie as EspeciesModel).NomeEspecieAnimal = Console.ReadLine();
+                    (Modelo as EspeciesModel).NomeEspecieAnimal = Console.ReadLine();
 
                     Console.WriteLine("Dados alterados com sucesso.\n");
                 }
@@ -55,14 +54,14 @@ namespace SysVeterinario_V3.Controller
 
             SalvarBancoDados();
         }
-        public override void Excluir<T>(T Especie)
+        public override void Excluir<T>(T Modelo)
         {
             Boolean achou = false;
             int posicao = -1;
 
             foreach (var item in _listaEspecies)
             {
-                if ((Especie as EspeciesModel).IdEspecieAnimal == item.IdEspecieAnimal)
+                if ((Modelo as EspeciesModel).IdEspecieAnimal == item.IdEspecieAnimal)
                 {
                     achou = true;
 
@@ -79,13 +78,13 @@ namespace SysVeterinario_V3.Controller
 
             SalvarBancoDados();
         }
-        public override void Pesquisar(int IdEspecieAnimal)
+        public override void Pesquisar(int valor)
         {
             EspeciesModel especie = null;
 
             foreach (var item in _listaEspecies)
             {
-                if (item.IdEspecieAnimal == IdEspecieAnimal)
+                if (item.IdEspecieAnimal == valor)
                 {
                     especie = item;
                     Imprimir(especie);
@@ -96,7 +95,7 @@ namespace SysVeterinario_V3.Controller
                 }
             }
         }
-        public override void Imprimir<T>(T Especie)
+        public override void Imprimir<T>(T Modelo)
         {
             foreach (var item in _listaEspecies)
             {

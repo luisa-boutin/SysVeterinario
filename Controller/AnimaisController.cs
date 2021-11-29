@@ -31,26 +31,26 @@ namespace SysVeterinario_V3.Controller
             _listaAnimais.Add(Modelo as AnimaisModel);
             SalvarBancoDados();
         }
-        public override void Alterar<T>(T Animal)
+        public override void Alterar<T>(T Modelo)
         {
             Boolean achou = false;
 
             foreach (var item in _listaAnimais)
             {
-                if ((Animal as AnimaisModel).IdAnimal == item.IdAnimal)
+                if ((Modelo as AnimaisModel).IdAnimal == item.IdAnimal)
                 {
                     achou = true;
 
                     Console.WriteLine("Insira aqui o nome do animal:");
-                    (Animal as AnimaisModel).NomeAnimal = Console.ReadLine();
+                    (Modelo as AnimaisModel).NomeAnimal = Console.ReadLine();
                     Console.WriteLine("Insira aqui o apelido do animal:");
-                    (Animal as AnimaisModel).ApelidoAnimal = Console.ReadLine();
+                    (Modelo as AnimaisModel).ApelidoAnimal = Console.ReadLine();
                     Console.WriteLine("Insira aqui a data de nascimento do animal (dd/mm/aaaa):");
-                    (Animal as AnimaisModel).DataDeNascimentoAnimal = DateTime.Parse(Console.ReadLine());
+                    (Modelo as AnimaisModel).DataDeNascimentoAnimal = DateTime.Parse(Console.ReadLine());
                     Console.WriteLine("Insira aqui observacoes sobre o animal:");
-                    (Animal as AnimaisModel).ObservacoesAnimal = Console.ReadLine();
+                    (Modelo as AnimaisModel).ObservacoesAnimal = Console.ReadLine();
                     Console.WriteLine("Insira aqui o codigo de identificacao da especie do animal:");
-                    (Animal as AnimaisModel).IdEspecieAnimal = int.Parse(Console.ReadLine());
+                    (Modelo as AnimaisModel).IdEspecieAnimal = int.Parse(Console.ReadLine());
 
                     Console.WriteLine("Dados alterados com sucesso.\n");
                 }
@@ -63,7 +63,7 @@ namespace SysVeterinario_V3.Controller
 
             SalvarBancoDados();
         }
-        public override void Excluir<T>(T Animal)
+        public override void Excluir<T>(T Modelo)
         {
             Boolean achou = false;
             int posicao = -1;
@@ -86,13 +86,13 @@ namespace SysVeterinario_V3.Controller
 
             SalvarBancoDados();
         }
-        public override void Pesquisar(int IdAnimal)
+        public override void Pesquisar(int valor)
         {
             AnimaisModel animal = null;
             
             foreach (var item in _listaAnimais)
             {
-                if(item.IdAnimal == IdAnimal)
+                if(item.IdAnimal == valor)
                 {
                     animal = item;
                     Imprimir(animal);
@@ -102,7 +102,7 @@ namespace SysVeterinario_V3.Controller
                 }
             }
         }
-        public override void Imprimir<T>(T animal)
+        public override void Imprimir<T>(T Modelo)
         {
             foreach(var item in _listaAnimais)
             {

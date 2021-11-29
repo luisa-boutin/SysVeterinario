@@ -18,7 +18,6 @@ namespace SysVeterinario_V3.Controller
             xml.Serialize(arquivo, _listaClientes);
             arquivo.Close();
         }
-
         public override void LerBancoDados()
         {
             XmlSerializer xml = new(typeof(List<ClientesModel>));
@@ -26,33 +25,33 @@ namespace SysVeterinario_V3.Controller
             _listaClientes = (List<ClientesModel>)xml.Deserialize(arquivo);
             arquivo.Close();
         }
-        public override void Inserir<T>(T Cliente)
+        public override void Inserir<T>(T Modelo)
         {
-            _listaClientes.Add(Cliente as ClientesModel);
+            _listaClientes.Add(Modelo as ClientesModel);
             SalvarBancoDados();
         }
-        public override void Alterar<T>(T Cliente)
+        public override void Alterar<T>(T Modelo)
         {
             Boolean achou = false;
 
             foreach (var item in _listaClientes)
             {
-                if ((Cliente as ClientesModel).IdAnimal == item.IdAnimal)
+                if ((Modelo as ClientesModel).IdAnimal == item.IdAnimal)
                 {
                     achou = true;
 
                     Console.WriteLine("Insira aqui o codigo de identificacao do animal:");
-                    (Cliente as ClientesModel).IdAnimal = int.Parse(Console.ReadLine());
+                    (Modelo as ClientesModel).IdAnimal = int.Parse(Console.ReadLine());
                     Console.WriteLine("Insira aqui o nome do cliente:");
-                    (Cliente as ClientesModel).NomeCliente = Console.ReadLine();
+                    (Modelo as ClientesModel).NomeCliente = Console.ReadLine();
                     Console.WriteLine("Insira aqui o CPF do cliente (000.000.000-45):");
-                    (Cliente as ClientesModel).CPFCliente = Console.ReadLine();
+                    (Modelo as ClientesModel).CPFCliente = Console.ReadLine();
                     Console.WriteLine("Insira aqui o e-mail do cliente:");
-                    (Cliente as ClientesModel).EmailCliente = Console.ReadLine();
+                    (Modelo as ClientesModel).EmailCliente = Console.ReadLine();
                     Console.WriteLine("Insira aqui a data de cadastro do cliente (dd/mm/aaaa):");
-                    (Cliente as ClientesModel).DataCadastroCliente = DateTime.Parse(Console.ReadLine());
+                    (Modelo as ClientesModel).DataCadastroCliente = DateTime.Parse(Console.ReadLine());
                     Console.WriteLine("Insira aqui o telefone do cliente:");
-                    (Cliente as ClientesModel).TelefoneCliente = Console.ReadLine();
+                    (Modelo as ClientesModel).TelefoneCliente = Console.ReadLine();
 
                     Console.WriteLine("Dados alterados com sucesso.\n");
                 }
@@ -65,14 +64,14 @@ namespace SysVeterinario_V3.Controller
 
             SalvarBancoDados();
         }
-        public override void Excluir<T>(T Cliente)
+        public override void Excluir<T>(T Modelo)
         {
             Boolean achou = false;
             int posicao = -1;
 
             foreach (var item in _listaClientes)
             {
-                if ((Cliente as ClientesModel).IdCliente == item.IdCliente)
+                if ((Modelo as ClientesModel).IdCliente == item.IdCliente)
                 {
                     achou = true;
                     posicao = _listaClientes.IndexOf(item);
@@ -88,13 +87,13 @@ namespace SysVeterinario_V3.Controller
 
             SalvarBancoDados();
         }
-        public override void Pesquisar(int IdCliente)
+        public override void Pesquisar(int valor)
         {
             ClientesModel cliente = null;
 
             foreach (var item in _listaClientes)
             {
-                if (item.IdCliente == IdCliente)
+                if (item.IdCliente == valor)
                 {
                     cliente = item;
                     Imprimir(cliente);
@@ -105,7 +104,7 @@ namespace SysVeterinario_V3.Controller
                 }
             }
         }
-        public override void Imprimir<T>(T Cliente)
+        public override void Imprimir<T>(T Modelo)
         {
             foreach (var item in _listaClientes)
             {
