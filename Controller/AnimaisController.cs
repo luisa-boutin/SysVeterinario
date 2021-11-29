@@ -70,7 +70,7 @@ namespace SysVeterinario_V3.Controller
 
             foreach (var item in _listaAnimais)
             {
-                if((Animal as AnimaisModel).IdAnimal == item.IdAnimal)
+                if((Modelo as AnimaisModel).IdAnimal == item.IdAnimal)
                 {
                     achou = true;
                     posicao = _listaAnimais.IndexOf(item);

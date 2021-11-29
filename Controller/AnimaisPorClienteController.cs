@@ -103,10 +103,5 @@ namespace SysVeterinario_V3.Controller
                 Console.WriteLine($"ID do cliente: {item.IdCliente.ToString()}");
             }
         }
-
-        public void SalvarTudo()
-        {
-            SalvarBancoDados();
-        }
     }
 }
